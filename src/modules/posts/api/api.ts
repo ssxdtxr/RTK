@@ -1,12 +1,11 @@
-import { baseApi } from "../../shared/api/api";
-import { ApiResponse } from "../../shared/api/types";
-import { GetPostsArgs, Post } from "./types";
+import { baseApi } from "../../../shared/api/api";
+import { GetPostsArgs, Post } from "../types";
 
 //injectEndpoints позволяет определить endpoints не в baseApi, а где-то извне (в данном случае в postsApi)
 
-export const postsApi = baseApi.injectEndpoints({
+const postsApi = baseApi.injectEndpoints({
   endpoints: ({ query }) => ({
-    getPosts: query<ApiResponse<Post[]>, GetPostsArgs>({
+    getPosts: query<Post[], GetPostsArgs>({
       query: ({ params }) => ({
         url: "/posts",
         params,
@@ -15,3 +14,5 @@ export const postsApi = baseApi.injectEndpoints({
   }),
   overrideExisting: true,
 });
+
+export const { useGetPostsQuery } = postsApi;

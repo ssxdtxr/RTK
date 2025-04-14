@@ -1,19 +1,3 @@
-export interface ApiError {
-  status: number;
-  data?: unknown;
-  message?: string;
-}
-
-export type ApiResponse<T> =
-  | {
-      data: T;
-      error?: never;
-    }
-  | {
-      data?: never;
-      error: ApiError;
-    };
-
 export type QueryParams = {
   _page?: number;
   _limit?: number;
